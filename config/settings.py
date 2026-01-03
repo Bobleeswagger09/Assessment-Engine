@@ -125,4 +125,8 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'Mini Assessment Engine for Acad AI - Backend Test Task',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
+    'ENUM_NAME_OVERRIDES': {
+        'StatusEnum': 'assessment.models.Exam.status',
+        'SubmissionStatusEnum': 'assessment.models.Submission.status',
+    },
 }

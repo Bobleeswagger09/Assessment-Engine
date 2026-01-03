@@ -39,10 +39,10 @@ class ExamListSerializer(serializers.ModelSerializer):
             'end_time', 'is_active', 'question_count', 'created_at'
         ]
     
-    def get_question_count(self, obj):
+    def get_question_count(self, obj: Exam) -> int:
         return obj.questions.count()
     
-    def get_is_active(self, obj):
+    def get_is_active(self, obj: Exam) -> bool:
         return obj.is_active()
 
 
@@ -59,7 +59,7 @@ class ExamDetailSerializer(serializers.ModelSerializer):
             'end_time', 'is_active', 'questions', 'created_at'
         ]
     
-    def get_is_active(self, obj):
+    def get_is_active(self, obj: Exam) -> bool:
         return obj.is_active()
 
 
@@ -140,7 +140,7 @@ class SubmissionListSerializer(serializers.ModelSerializer):
             'percentage', 'is_passed'
         ]
     
-    def get_is_passed(self, obj):
+    def get_is_passed(self, obj: Submission) -> bool:
         return obj.is_passed()
 
 
@@ -160,7 +160,7 @@ class SubmissionDetailSerializer(serializers.ModelSerializer):
             'is_passed'
         ]
     
-    def get_is_passed(self, obj):
+    def get_is_passed(self, obj: Submission) -> bool:
         return obj.is_passed()
 
 

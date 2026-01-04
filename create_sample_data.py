@@ -12,23 +12,33 @@ from datetime import timedelta
 print("Creating sample data...")
 
 # Create test student
-student, created = User.objects.get_or_create(
-    username='testuser',
-    defaults={
-        'email': 'test@example.com',
-        'first_name': 'Test',
-        'last_name': 'User'
-    }
-)
-if created:
-    student.set_password('testpass123')
-    student.save()
-    print(f"✓ Created student: {student.username}")
-else:
-    # Reset password if user exists
-    student.set_password('testpass123')
-    student.save()
-    print(f"✓ Student exists (password reset): {student.username}")
+print("Creating students...")
+
+students = []
+
+for i in range(1, 16):
+    username = f"student{i}"
+    email = f"student{i}@example.com"
+
+    student, created = User.objects.get_or_create(
+        username=username,
+        defaults={
+            "email": email,
+            "first_name": "Student",
+            "last_name": str(i),
+        }
+    )
+
+    if created:
+        student.set_password("testpass123")
+        student.save()
+        print(f"✓ Created student: {username}")
+    else:
+        print(f"✓ Student exists: {username}")
+
+    students.append(student)
+
+
 
 # Create admin if doesn't exist
 admin, created = User.objects.get_or_create(

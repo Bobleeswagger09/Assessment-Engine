@@ -122,11 +122,6 @@ CORS_ALLOW_CREDENTIALS = True
 # Spectacular settings
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Assessment Engine API',
-    'DESCRIPTION': 'Mini Assessment Engine for Acad AI - Backend Test Task',
+    'DESCRIPTION': 'Mini Assessment Engine for Acad AI',
     'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': False,
-    'ENUM_NAME_OVERRIDES': {
-        'StatusEnum': 'assessment.models.Exam.status',
-        'SubmissionStatusEnum': 'assessment.models.Submission.status',
-    },
 }

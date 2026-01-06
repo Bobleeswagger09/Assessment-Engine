@@ -2,8 +2,6 @@
 
 A production‑grade **Django REST Framework** backend for automated academic evaluations. Built to model real‑world assessment workflows with **secure exam delivery**, **instant grading**, and **actionable analytics**.
 
-> This repository is optimized for **technical assessments, recruiter reviews, and live demos**.
-
 ---
 
 ## 🎯 Problem Statement

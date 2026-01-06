@@ -1,3 +1,8 @@
+from django.contrib.auth.models import User
+from rest_framework import viewsets, permissions
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
 from rest_framework import viewsets, status, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -120,6 +125,26 @@ class SubmissionViewSet(viewsets.ModelViewSet):
         elif self.action == 'submit':
             return SubmissionCreateSerializer
         return SubmissionListSerializer
+    
+    def create(self, request, *args, **kwargs):
+        """
+        Disable default POST /api/submissions/
+        Students must use /api/submissions/submit/ instead
+        """
+        return Response(
+            {
+                'error': 'Direct submission creation is not allowed. Use /api/submissions/submit/ endpoint instead.',
+                'correct_endpoint': '/api/submissions/submit/',
+                'method': 'POST',
+                'example': {
+                    'exam_id': 1,
+                    'answers': [
+                        {'question_id': 1, 'answer_text': 'Your answer here'}
+                    ]
+                }
+            },
+            status=status.HTTP_405_METHOD_NOT_ALLOWED
+        )
     
     @transaction.atomic
     @action(detail=False, methods=['post'])
@@ -252,15 +277,30 @@ class SubmissionViewSet(viewsets.ModelViewSet):
         })
 
 
+
 class UserProfileViewSet(viewsets.ReadOnlyModelViewSet):
     """API endpoint for user profile"""
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
-    
+
     def get_queryset(self):
-        return [self.request.user]
-    
-    @action(detail=False, methods=['get'])
+        """
+        Return a REAL queryset.
+        - Students: can only see their own profile
+        - Admins: can see all users
+        """
+        user = self.request.user
+
+        if user.is_staff:
+            return User.objects.all()
+
+        return User.objects.filter(id=user.id)
+
+    @action(detail=False, methods=['get'], url_path="me")
     def me(self, request):
-        serializer = UserSerializer(request.user)
+        """
+        GET /api/users/me/
+        Returns the currently authenticated user's profile
+        """
+        serializer = self.get_serializer(request.user)
         return Response(serializer.data)

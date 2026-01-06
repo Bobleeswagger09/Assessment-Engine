@@ -7,9 +7,6 @@ A production‑grade **Django REST Framework** backend for automated academic ev
 ## 🎯 Problem Statement
 
 Academic platforms require a secure way to deliver exams, prevent cheating, grade diverse question types instantly, and provide transparent performance analytics—without exposing answer keys or allowing duplicate submissions.
-
-**Acad AI** addresses this by delivering a modular, scalable backend that mirrors real institutional exam systems.
-
 ---
 
 ## 🚀 Core Features

@@ -259,16 +259,6 @@ Uses:
 
 ---
 
-## 📈 Why This Project Stands Out
-
-✔ Real‑world academic modeling
-✔ Clean architecture & service layers
-✔ Security‑first exam delivery
-✔ Easily extensible to AI grading
-✔ Assessment‑ready backend system
-
----
-
 ## ✨ Author
 
 **Victor Samuel**
@@ -276,4 +266,3 @@ Backend Engineer | Django & REST APIs
 
 ---
 
-> 🧠 *Designed as a technical assessment project and scalable foundation for AI‑driven education platforms.*
